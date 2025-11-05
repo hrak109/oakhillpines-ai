@@ -2,23 +2,20 @@ version: "3.9"
 
 services:
   redis:
-    image: redis:7.4
+    image: redis:7
     container_name: redis
-    restart: always
     ports:
       - "6379:6379"
-    volumes:
-      - redis_data:/data
 
   api:
-    build: ./api_server
-    container_name: api_server
-    restart: always
-    env_file: .env
+    build: .
+    container_name: fastapi-api
     ports:
-      - "${API_PORT}:8000"
+      - "8000:8000"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    volumes:
+      - ./:/app  # Mount local code, enables auto-reload
     depends_on:
       - redis
-
-volumes:
-  redis_data:
