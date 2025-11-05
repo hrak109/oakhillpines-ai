@@ -1,10 +1,24 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import redis
 import uuid
 import os
 
 app = FastAPI()
+
+origins = [
+    "https://oakhillpines.com",
+    "https://www.oakhillpines.com"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,  # only these domains
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
 REDIS_PORT = int(os.getenv("REDIS_PORT", 6379))

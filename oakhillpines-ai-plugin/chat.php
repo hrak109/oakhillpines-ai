@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: Simple AI Chat
- * Description: A lightweight AI chat plugin that connects to an external API.
+ * Plugin Name: Oakhill Pines AI
+ * Description: LLM powered chat plugin for Oakhill Pines website.
  * Version: 1.0
- * Author: Your Name
+ * Author: Hee Bae
  */
 
 function ai_chat_enqueue_scripts() {
@@ -12,7 +12,7 @@ function ai_chat_enqueue_scripts() {
 
     // Pass the API URL to JavaScript
     wp_localize_script('ai-chat-script', 'aiChat', array(
-        'apiUrl' => 'http://18.118.161.244:8000'
+        'apiUrl' => 'https://locate-aye-asthma-pollution.trycloudflare.com'
     ));
 }
 add_action('wp_enqueue_scripts', 'ai_chat_enqueue_scripts');
